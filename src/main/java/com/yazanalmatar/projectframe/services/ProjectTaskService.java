@@ -30,7 +30,7 @@ public class ProjectTaskService {
         projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
         projectTask.setProjectIdentifier(projectIdentifier);
         //TODO - Set Initial Priority when Priority == null
-        if (projectTask.getPriority() == 0 || projectTask.getPriority() == null) {
+        if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
             projectTask.setPriority(3);
         }
         //TODO - Set Initial Status when Status == null
