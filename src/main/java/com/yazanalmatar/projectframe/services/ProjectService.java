@@ -44,4 +44,13 @@ public class ProjectService {
         projectRepository.delete(project);
     }
 
+    public Project updateProjectByIdentifier(Project project, String projectId) {
+        Project project1 = projectRepository.findByProjectIdentifier(projectId);
+        if (project1 == null) {
+            throw new ProjectIdException("Project ID " + projectId + " does not exist");
+        }
+        projectRepository.save(project);
+        return project;
+    }
+
 }

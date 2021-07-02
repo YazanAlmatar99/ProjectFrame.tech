@@ -51,4 +51,11 @@ public class ProjectController {
 
         return new ResponseEntity<String>("Project with ID: " + projectId + " was deleted", HttpStatus.OK);
     }
+
+    @PatchMapping("/{projectId}")
+    public ResponseEntity<?> updateProjectByIdentifier(@RequestBody Project project, @PathVariable String projectId) {
+        Project updatedProject = projectService.updateProjectByIdentifier(project, projectId);
+
+        return new ResponseEntity<Project>(updatedProject, HttpStatus.OK);
+    }
 }
