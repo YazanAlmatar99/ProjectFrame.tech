@@ -71,4 +71,17 @@ public class ProjectTaskService {
         return projectTask;
 
     }
+
+    public ProjectTask updateByProjectSequence(ProjectTask updatedProjectTask, String backlog_id, String sequence) {
+
+        ProjectTask projectTask = findProjectTaskByProjectSequence(backlog_id, sequence);
+        if (projectTask == null) {
+            throw new ProjectNotFoundException("Project Task with ID: " + sequence + " does not exist in project: " + backlog_id);
+        }
+        projectTask = updatedProjectTask;
+
+        return projectTaskRepository.save(projectTask);
+
+
+    }
 }
