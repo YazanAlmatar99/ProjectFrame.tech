@@ -82,6 +82,14 @@ public class ProjectTaskService {
 
         return projectTaskRepository.save(projectTask);
 
+    }
 
+    public void deleteProjectTaskByProjectSequence(String backlog_id, String sequence) {
+        ProjectTask projectTask = findProjectTaskByProjectSequence(backlog_id, sequence);
+        if (projectTask == null) {
+            throw new ProjectNotFoundException("Project Task with ID: " + sequence + " does not exist in project: " + backlog_id);
+        }
+
+        projectTaskRepository.delete(projectTask);
     }
 }
