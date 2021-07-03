@@ -1,8 +1,11 @@
 package com.yazanalmatar.projectframe.services;
 
 import com.yazanalmatar.projectframe.domain.Backlog;
+import com.yazanalmatar.projectframe.domain.Project;
 import com.yazanalmatar.projectframe.domain.ProjectTask;
+import com.yazanalmatar.projectframe.exceptions.ProjectNotFoundException;
 import com.yazanalmatar.projectframe.repositories.BacklogRepository;
+import com.yazanalmatar.projectframe.repositories.ProjectRepository;
 import com.yazanalmatar.projectframe.repositories.ProjectTaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,33 +19,38 @@ public class ProjectTaskService {
     @Autowired
     private ProjectTaskRepository projectTaskRepository;
 
+    @Autowired
+    private ProjectRepository projectRepository;
+
     public ProjectTask addProjectTask(String projectIdentifier, ProjectTask projectTask) {
         //TODO - Exceptions: Project not found
+        try {
+            Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
+            projectTask.setBacklog(backlog);
+            Integer BacklogSequence = backlog.getPTSequence();
+            BacklogSequence++;
+            backlog.setPTSequence(BacklogSequence);
+            projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
+            projectTask.setProjectIdentifier(projectIdentifier);
+            if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
+                projectTask.setPriority(3);
+            }
+            if (projectTask.getStatus() == "" || projectTask.getStatus() == null) {
+                projectTask.setStatus("TO_DO");
+            }
+        } catch (Exception e) {
+            throw new ProjectNotFoundException("Project not Found");
+        }
 
-        //TODO - ProjectTasks has to be added to a specific project, project != null => Backlog != null
-        Backlog backlog = backlogRepository.findByProjectIdentifier(projectIdentifier);
-        //TODO - Set the Backlog to the ProjectTask
-        projectTask.setBacklog(backlog);
-        //TODO - Set Project Sequence EX: IDPRO-1, IDPRO-2, etc...
-        Integer BacklogSequence = backlog.getPTSequence();
-        //TODO- Update the Backlog Sequence and Add it to ProjectTask
-        BacklogSequence++;
-        backlog.setPTSequence(BacklogSequence);
-        projectTask.setProjectSequence(projectIdentifier + "-" + BacklogSequence);
-        projectTask.setProjectIdentifier(projectIdentifier);
-        //TODO - Set Initial Priority when Priority == null
-        if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
-            projectTask.setPriority(3);
-        }
-        //TODO - Set Initial Status when Status == null
-        if (projectTask.getStatus() == "" || projectTask.getStatus() == null) {
-            projectTask.setStatus("TO_DO");
-        }
 
         return projectTaskRepository.save(projectTask);
     }
 
     public Iterable<ProjectTask> findBacklogById(String id) {
+        Project project = projectRepository.findByProjectIdentifier(id);
+        if (project == null) {
+            throw new ProjectNotFoundException("Project with ID: " + id + " does not exist.");
+        }
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
     }
 }
