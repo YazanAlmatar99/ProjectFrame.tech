@@ -4,14 +4,14 @@ import com.yazanalmatar.projectframe.domain.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-//import static com.yazanalmatar.projectframe.security.SecurityConstants.JWT_SECRET_KEY;
-//import static com.yazanalmatar.projectframe.security.SecurityConstants.TOKEN_EXPIRATION_TIME;
 
+@Component
 public class JwtTokenProvider {
 
     //Generate token
