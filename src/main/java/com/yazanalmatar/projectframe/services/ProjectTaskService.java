@@ -35,7 +35,7 @@ public class ProjectTaskService {
             if (projectTask.getPriority() == null || projectTask.getPriority() == 0) {
                 projectTask.setPriority(3);
             }
-            if (projectTask.getStatus() == "" || projectTask.getStatus() == null) {
+            if (projectTask.getStatus() == null || projectTask.getStatus() == "") {
                 projectTask.setStatus("TO_DO");
             }
         } catch (Exception e) {
