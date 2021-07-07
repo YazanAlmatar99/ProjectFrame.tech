@@ -1,19 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { useActions } from "../../hooks/use-actions";
+import { useHistory } from "react-router-dom";
+import classnames from "classnames";
 
 const AddProject = () => {
+  const { createProject } = useActions();
+  const history = useHistory();
+  const errors = useSelector((state) => state.errorState);
   const [input, setInput] = useState({
     projectName: "",
     projectIdentifier: "",
     description: "",
     start_date: "",
     end_date: "",
+    errors: {},
   });
 
+  useEffect(() => {
+    if (Object.keys(errors).length === 0) {
+      return;
+    }
+    setInput({ ...input, errors });
+  }, [errors]);
   const onChangeHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
     const {
       projectName,
@@ -29,8 +43,9 @@ const AddProject = () => {
       start_date,
       end_date,
     };
-    console.log(newProject);
+    await createProject(newProject, history);
   };
+
   return (
     <div>
       <div className="project">
@@ -43,31 +58,48 @@ const AddProject = () => {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg "
+                    className={classnames("form-control form-control-lg ", {
+                      "is-invalid": errors.projectName,
+                    })}
                     placeholder="Project Name"
                     name="projectName"
                     value={input.projectName}
                     onChange={onChangeHandler}
                   />
+                  {errors.projectName && (
+                    <div className="invalid-feedback">{errors.projectName}</div>
+                  )}
                 </div>
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg ", {
+                      "is-invalid": errors.projectIdentifier,
+                    })}
                     placeholder="Unique Project ID"
                     name="projectIdentifier"
                     value={input.projectIdentifier}
                     onChange={onChangeHandler}
                   />
+                  {errors.projectIdentifier && (
+                    <div className="invalid-feedback">
+                      {errors.projectIdentifier}
+                    </div>
+                  )}
                 </div>
                 <div className="form-group">
                   <textarea
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg ", {
+                      "is-invalid": errors.description,
+                    })}
                     placeholder="Project Description"
                     name="description"
                     value={input.description}
                     onChange={onChangeHandler}
                   ></textarea>
+                  {errors.description && (
+                    <div className="invalid-feedback">{errors.description}</div>
+                  )}
                 </div>
                 <h6>Start Date</h6>
                 <div className="form-group">
@@ -89,7 +121,6 @@ const AddProject = () => {
                     onChange={onChangeHandler}
                   />
                 </div>
-
                 <input
                   type="submit"
                   className="btn btn-primary btn-block mt-4"
