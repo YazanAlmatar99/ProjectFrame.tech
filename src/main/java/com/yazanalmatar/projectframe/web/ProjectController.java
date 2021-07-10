@@ -14,6 +14,7 @@ import java.security.Principal;
 
 @RestController
 @RequestMapping("/api/project")
+@CrossOrigin
 public class ProjectController {
 
     private ProjectService projectService;
