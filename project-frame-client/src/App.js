@@ -4,6 +4,7 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
 import AddProject from "./components/Project/AddProject";
 import { ToastContainer, toast } from "react-toastify";
+import UpdateProject from "./components/Project/UpdateProject";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Header />
         <Route path="/dashboard" component={Dashboard} exact />
         <Route path="/addProject" component={AddProject} exact />
+        <Route path="/updateProject/:id" component={UpdateProject} exact />
       </div>
     </Router>
   );
