@@ -23,7 +23,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 import { useActions } from "./hooks/use-actions";
 import { store } from "./state";
 
-axios.defaults.baseURL = "http://Projectframetech-env.eba-xmnj3knj.us-east-2.elasticbeanstalk.com"
+axios.defaults.baseURL = "https://api.projectframe.io"
 const App = () => {
   const security = useSelector((state) => state.securityState);
   const { authUser } = useActions();
