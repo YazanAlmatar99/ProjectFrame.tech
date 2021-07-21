@@ -20,9 +20,9 @@ const ProjectItem = ({ project }) => {
             <h3>{project.projectName}</h3>
             <p>{project.description}</p>
           </div>
-          <div className="col-md-4 d-none d-lg-block">
+          <div className="col-md-4  d-lg-block">
             <ul className="list-group">
-              <Link>
+              <Link to={`/projectBoard/${project.projectIdentifier}`}>
                 <li className="list-group-item board">
                   <i className="fa fa-flag-checkered pr-1"> Project Board </i>
                 </li>

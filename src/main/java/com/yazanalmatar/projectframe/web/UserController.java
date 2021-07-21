@@ -28,13 +28,13 @@ import javax.validation.Valid;
 public class UserController {
     @Autowired
     private MapValidationErrorService mapValidationErrorService;
+    @Autowired
+    private JwtTokenProvider jwtTokenProvider;
 
     @Autowired
     private UserService userService;
     @Autowired
     private UserValidator userValidator;
-    @Autowired
-    private JwtTokenProvider jwtTokenProvider;
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -61,5 +61,17 @@ public class UserController {
 
         User newUser = userService.saveUser(user);
         return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/auth")
+    public ResponseEntity<?> tokenValidator(@RequestHeader String Authorization) {
+        System.out.println(Authorization);
+        boolean isTokenValid = jwtTokenProvider.validateToken(Authorization);
+        System.out.println(isTokenValid);
+        if (isTokenValid) {
+            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }

@@ -55,7 +55,7 @@ const AddProject = () => {
               <h5 className="display-4 text-center">Create Project</h5>
               <hr />
               <form onSubmit={onSubmitHandler}>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg ", {
@@ -70,7 +70,7 @@ const AddProject = () => {
                     <div className="invalid-feedback">{errors.projectName}</div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg ", {
@@ -87,7 +87,7 @@ const AddProject = () => {
                     </div>
                   )}
                 </div>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <textarea
                     className={classnames("form-control form-control-lg ", {
                       "is-invalid": errors.description,
@@ -102,7 +102,7 @@ const AddProject = () => {
                   )}
                 </div>
                 <h6>Start Date</h6>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <input
                     type="date"
                     className="form-control form-control-lg"
@@ -112,7 +112,7 @@ const AddProject = () => {
                   />
                 </div>
                 <h6>Estimated End Date</h6>
-                <div className="form-group">
+                <div className="form-group mb-2">
                   <input
                     type="date"
                     className="form-control form-control-lg"

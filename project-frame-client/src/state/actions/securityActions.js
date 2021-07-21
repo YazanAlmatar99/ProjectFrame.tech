@@ -34,6 +34,37 @@ export const loginUser = (user, history) => async (dispatch) => {
 
 export const logout = () => (dispatch) => {
   localStorage.removeItem("token");
-  setJWTToken(false);
+  setJWTToken({});
   dispatch({ type: SET_CURRENT_USER, payload: {} });
+};
+
+export const authUser = () => async (dispatch) => {
+  const bearerToken = localStorage.getItem("token");
+  const token = bearerToken.split(" ")[1];
+  try {
+    const response = await axios.get("/api/users/auth", {
+      headers: { Authorization: token },
+    });
+    console.log(response.status);
+    if (response.status === 202) {
+      console.log("Authorized");
+      setJWTToken(bearerToken);
+      const decoded_jwtToken = jwt_decode(bearerToken);
+      dispatch({ type: SET_CURRENT_USER, payload: decoded_jwtToken });
+      const currentTime = Date.now() / 1000;
+      console.log(Date.now() / 1000);
+      console.log(decoded_jwtToken.exp < currentTime);
+      if (decoded_jwtToken.exp < currentTime) {
+        dispatch({ type: SET_CURRENT_USER, payload: {} });
+        window.location.href = "/";
+        console.log("Expired");
+      }
+    } else {
+    }
+    return response.status;
+  } catch (error) {
+    localStorage.removeItem("token");
+    dispatch({ type: SET_CURRENT_USER, payload: {} });
+    console.log("UnAuthorized");
+  }
 };
