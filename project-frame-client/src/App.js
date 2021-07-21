@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-
+import axios from 'axios'
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
@@ -22,6 +22,8 @@ import { logout } from "./state/actions/securityActions";
 import PrivateRoute from "./utils/PrivateRoute";
 import { useActions } from "./hooks/use-actions";
 import { store } from "./state";
+
+axios.defaults.baseURL = "http://Projectframetech-env.eba-xmnj3knj.us-east-2.elasticbeanstalk.com"
 const App = () => {
   const security = useSelector((state) => state.securityState);
   const { authUser } = useActions();
