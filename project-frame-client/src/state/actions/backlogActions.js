@@ -5,6 +5,7 @@ import {
   GET_PROJECT_TASK,
   GET_ERRORS,
   DELETE_PROJECT_TASK,
+  UPDATE_PROJECT_TASK_STATUS,
 } from "../action-types";
 
 export const addProjectTask =
@@ -85,4 +86,12 @@ export const deleteProjectTask =
       dispatch({ type: GET_ERRORS, payload: error.response.data });
       history.push("/dashboard");
     }
+  };
+
+export const updateProjectTaskStatus =
+  (sequence, status) => async (dispatch) => {
+    dispatch({
+      type: UPDATE_PROJECT_TASK_STATUS,
+      payload: { sequence, status },
+    });
   };

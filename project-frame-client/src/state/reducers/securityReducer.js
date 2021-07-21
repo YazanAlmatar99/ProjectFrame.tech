@@ -5,7 +5,8 @@ const initialState = {
   validToken: false,
 };
 const booleanActionPayload = (payload) => {
-  if (payload) {
+  console.log(Object.keys(payload).length);
+  if (Object.keys(payload).length) {
     return true;
   } else {
     return false;

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Project from "../Project/index";
 import ProjectItem from "../Project/ProjectItem";
 import { useSelector } from "react-redux";
 import { useActions } from "../../hooks/use-actions";

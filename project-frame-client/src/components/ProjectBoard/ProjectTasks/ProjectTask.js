@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { useActions } from "../../../hooks/use-actions";
 const ProjectTask = ({ projectTask }) => {
-  const { deleteProjectTask } = useActions();
+  const { deleteProjectTask, updateProjectTaskStatus, addProjectTask } =
+    useActions(); //addProjectTask(id, updatedProjectTask, history);
   const history = useHistory();
   const onDeleteClick = async () => {
     await deleteProjectTask(
@@ -13,7 +14,14 @@ const ProjectTask = ({ projectTask }) => {
   };
   let priorityString;
   let priorityClass;
-
+  const onSelectHandler = async (e) => {
+    await addProjectTask(
+      projectTask.projectIdentifier,
+      { ...projectTask, status: e.target.value },
+      history
+    );
+    updateProjectTaskStatus(projectTask.projectSequence, e.target.value);
+  };
   switch (projectTask.priority) {
     case 1:
       priorityClass = "bg-danger text-light";
@@ -52,6 +60,16 @@ const ProjectTask = ({ projectTask }) => {
         >
           {" "}
         </button>
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onChange={onSelectHandler}
+        >
+          <option selected>Change Status</option>
+          <option value="TO_DO">To Do</option>
+          <option value="IN_PROGRESS">In Progress</option>
+          <option value="DONE">Done</option>
+        </select>
       </div>
     </div>
   );
