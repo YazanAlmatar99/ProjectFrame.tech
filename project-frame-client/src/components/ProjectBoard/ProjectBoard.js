@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useActions } from "../../hooks/use-actions";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
 import Backlog from "./Backlog";
 const ProjectBoard = (props) => {
   const { getBacklog } = useActions();
@@ -19,8 +21,14 @@ const ProjectBoard = (props) => {
 
   return (
     <div className="container">
-      <Link to={`/addProjectTask/${id}`} className="btn btn-primary mb-3">
-        <i className="fas fa-plus-circle"> Create Project Task</i>
+      <Link to={`/addProjectTask/${id}`} className="mb-3">
+        <Button
+          variant="contained"
+          color="primary"
+          startIcon={<AddCircleIcon />}
+        >
+          Create Project Task
+        </Button>
       </Link>
       <br />
       <hr />
