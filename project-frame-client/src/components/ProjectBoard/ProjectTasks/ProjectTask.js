@@ -94,7 +94,7 @@ const ProjectTask = ({ projectTask }) => {
       break;
   }
   return (
-    <div className=" mb-3 bg-light">
+    <div className="mb-3 bg-light">
       <Card>
         <CardHeader
           avatar={

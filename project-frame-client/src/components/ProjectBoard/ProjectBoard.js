@@ -21,7 +21,11 @@ const ProjectBoard = (props) => {
 
   return (
     <div className="container">
-      <Link to={`/addProjectTask/${id}`} className="mb-3">
+      <Link
+        to={`/addProjectTask/${id}`}
+        className="mb-3"
+        style={{ textDecoration: "none" }}
+      >
         <Button
           variant="contained"
           color="primary"
