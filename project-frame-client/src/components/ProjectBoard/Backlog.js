@@ -49,41 +49,39 @@ const Backlog = ({ projectTasks }) => {
         }
       ></FormControlLabel>
       {showChart ? (
-        <div className="chart-wrapper">
-          <ProgressChart
-            todoItems={todoItems.length}
-            inProgressItems={inProgressItems.length}
-            doneItems={doneItems.length}
-          />
+        <div className="chart-wrapper col-md-6">
+          <div className="card bg-light mb-3" style={{ margin: "auto" }}>
+            <div className="card-header text-center">Progress Statistics</div>
+            <div className="card-body">
+              <ProgressChart
+                todoItems={todoItems.length}
+                inProgressItems={inProgressItems.length}
+                doneItems={doneItems.length}
+              />
+            </div>
+          </div>
         </div>
       ) : null}
 
       <div className="row">
         <div className="col-md-4">
-          <div className="card text-center mb-2">
-            <div className="card-header bg-secondary text-white">
-              <h3 className="fas fa-tasks"> To Do</h3>
-            </div>
+          <div className="card bg-light mb-3">
+            <div className="card-header text-center">To Do</div>
+            <div className="card-body">{todoItems}</div>
           </div>
-
-          {todoItems}
         </div>
         <div className="col-md-4">
-          <div className="card text-center mb-2">
-            <div className="card-header bg-primary text-white">
-              <h3 className="fas fa-spinner"> In Progress</h3>
-            </div>
+          <div className="card bg-light mb-3">
+            <div className="card-header text-center">In Progress</div>
+            <div className="card-body">{inProgressItems}</div>
           </div>
-          {inProgressItems}
         </div>
 
         <div className="col-md-4">
-          <div className="card text-center mb-2">
-            <div className="card-header bg-success text-white">
-              <h3 className="fas fa-check-circle"> Done</h3>
-            </div>
+          <div className="card bg-light mb-3">
+            <div className="card-header text-center">Done</div>
+            <div className="card-body">{doneItems}</div>
           </div>
-          {doneItems}
         </div>
       </div>
     </div>
