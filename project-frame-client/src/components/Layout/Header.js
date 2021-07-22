@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useActions } from "../../hooks/use-actions";
+import SvgIcon from "@material-ui/core/SvgIcon";
 const Header = () => {
   const { logout } = useActions();
   const security = useSelector((state) => state.securityState);
@@ -9,6 +10,9 @@ const Header = () => {
     <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4">
       <div className="container">
         <Link className="navbar-brand" to="/dashboard">
+          <SvgIcon>
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+          </SvgIcon>{" "}
           ProjectFrame.tech
         </Link>
         <button
