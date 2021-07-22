@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState } from "react";
-import axios from 'axios'
+import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dashboard from "./components/Dashboard";
 import Header from "./components/Layout/Header";
@@ -11,19 +11,14 @@ import UpdateProject from "./components/Project/UpdateProject";
 import UpdateProjectTask from "./components/ProjectBoard/ProjectTasks/UpdateProjectTask";
 import Landing from "./components/Layout/Landing";
 import { useSelector } from "react-redux";
-import Login from "./components/UserManagment/Login";
-import Register from "./components/UserManagment/Register";
+import Login from "./components/UserManagement/Login";
+import Register from "./components/UserManagement/Register";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { AddProjectTask } from "./components/ProjectBoard/ProjectTasks/AddProjectTask";
-import jwt_decode from "jwt-decode";
-import { SET_CURRENT_USER } from "./state/action-types";
-import setJWTToken from "./utils/setJWTToken";
-import { logout } from "./state/actions/securityActions";
 import PrivateRoute from "./utils/PrivateRoute";
 import { useActions } from "./hooks/use-actions";
-import { store } from "./state";
 
-axios.defaults.baseURL = "https://api.projectframe.io"
+axios.defaults.baseURL = "https://api.projectframe.io";
 const App = () => {
   const security = useSelector((state) => state.securityState);
   const { authUser } = useActions();

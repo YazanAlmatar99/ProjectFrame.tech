@@ -1,9 +1,14 @@
+import "./styles.scss";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useActions } from "../../hooks/use-actions";
 import ProjectTask from "./ProjectTasks/ProjectTask";
-
+import ProgressChart from "./ProgressChart/ProgressChart";
+import Switch from "@material-ui/core/Switch";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 const Backlog = ({ projectTasks }) => {
+  const [showChart, setShowChart] = useState(true);
+  const handleChange = () => {
+    setShowChart(!showChart);
+  };
   useEffect(() => {
     console.log(projectTasks);
   });
@@ -31,6 +36,28 @@ const Backlog = ({ projectTasks }) => {
   }
   return (
     <div className="container">
+      <FormControlLabel
+        label="Show Stats Chart"
+        control={
+          <Switch
+            checked={showChart}
+            onChange={handleChange}
+            color="secondary"
+            name="showChart"
+            inputProps={{ "aria-label": "primary checkbox" }}
+          />
+        }
+      ></FormControlLabel>
+      {showChart ? (
+        <div className="chart-wrapper">
+          <ProgressChart
+            todoItems={todoItems.length}
+            inProgressItems={inProgressItems.length}
+            doneItems={doneItems.length}
+          />
+        </div>
+      ) : null}
+
       <div className="row">
         <div className="col-md-4">
           <div className="card text-center mb-2">

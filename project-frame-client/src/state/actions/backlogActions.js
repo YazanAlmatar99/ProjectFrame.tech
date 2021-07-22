@@ -6,6 +6,7 @@ import {
   GET_ERRORS,
   DELETE_PROJECT_TASK,
   UPDATE_PROJECT_TASK_STATUS,
+  SORT_BACKLOG_BY_STATUS,
 } from "../action-types";
 
 export const addProjectTask =
@@ -34,6 +35,7 @@ export const getBacklog = (backlog_id, history) => async (dispatch) => {
     const response = await axios.get(`/api/backlog/${backlog_id}`);
 
     dispatch({ type: GET_BACKLOG, payload: response.data });
+    dispatch({ type: SORT_BACKLOG_BY_STATUS, payload: response.data });
   } catch (error) {
     console.error(error);
     toast.error(
