@@ -31,7 +31,7 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <ToastContainer autoClose={3000} draggable pauseOnHover />
+        <ToastContainer autoClose={2000} draggable pauseOnHover />
         <Header />
         {
           //Private Routes
