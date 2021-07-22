@@ -133,11 +133,7 @@ const ProjectTask = ({ projectTask }) => {
             </Link>
 
             <MenuItem onClick={handleMenuClose} onClick={onDeleteClick}>
-              <IconButton
-                aria-label="delete"
-                onClick={onDeleteClick}
-                color="secondary"
-              >
+              <IconButton aria-label="delete" color="secondary">
                 <DeleteForeverIcon />
               </IconButton>
             </MenuItem>
