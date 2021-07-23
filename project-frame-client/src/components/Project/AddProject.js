@@ -58,8 +58,9 @@ const AddProject = () => {
     var yyyy = date.getFullYear();
 
     const start_date = mm + "-" + dd + "-" + yyyy;
-    console.log(start_date);
-    setInput({ ...input, start_date });
+
+    setInput({ ...input, start_date: new Date(start_date) });
+    console.log(input.start_date);
   };
   const handleEndDate = (date) => {
     var dd = String(date.getDate()).padStart(2, "0");
@@ -67,8 +68,8 @@ const AddProject = () => {
     var yyyy = date.getFullYear();
 
     const end_date = mm + "-" + dd + "-" + yyyy;
-    console.log(end_date);
-    setInput({ ...input, end_date });
+    console.log(input.end_date);
+    setInput({ ...input, end_date: new Date(end_date) });
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0) {
@@ -79,7 +80,13 @@ const AddProject = () => {
   const onChangeHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
+  const getFormattedDate = (date) => {
+    let year = date.getFullYear();
+    let month = (1 + date.getMonth()).toString().padStart(2, "0");
+    let day = date.getDate().toString().padStart(2, "0");
 
+    return month + "-" + day + "-" + year;
+  };
   const onFormSubmit = async (e) => {
     e.preventDefault();
     const {
@@ -89,12 +96,15 @@ const AddProject = () => {
       start_date,
       end_date,
     } = input;
+    const start_date_formatted = getFormattedDate(start_date);
+    const end_date_formatted = getFormattedDate(end_date);
+
     const newProject = {
       projectName,
       projectIdentifier,
       description,
-      start_date,
-      end_date,
+      start_date: start_date_formatted,
+      end_date: end_date_formatted,
     };
     await createProject(newProject, history);
   };
