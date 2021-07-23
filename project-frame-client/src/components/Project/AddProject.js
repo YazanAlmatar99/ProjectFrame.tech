@@ -59,23 +59,23 @@ const AddProject = () => {
   });
 
   const handleStartDate = (date) => {
-    var dd = String(date.getDate()).padStart(2, "0");
-    var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = date.getFullYear();
+    // var dd = String(date.getDate()).padStart(2, "0");
+    // var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+    // var yyyy = date.getFullYear();
 
-    const start_date = mm + "-" + dd + "-" + yyyy;
+    // const start_date = mm + "-" + dd + "-" + yyyy;
 
-    setInput({ ...input, start_date: new Date(start_date) });
-    console.log(input.start_date);
+    setInput({ ...input, start_date: date });
+    // console.log(input.start_date);
   };
   const handleEndDate = (date) => {
-    var dd = String(date.getDate()).padStart(2, "0");
-    var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-    var yyyy = date.getFullYear();
+    // var dd = String(date.getDate()).padStart(2, "0");
+    // var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
+    // var yyyy = date.getFullYear();
 
-    const end_date = mm + "-" + dd + "-" + yyyy;
+    // const end_date = mm + "-" + dd + "-" + yyyy;
     console.log(input.end_date);
-    setInput({ ...input, end_date: new Date(end_date) });
+    setInput({ ...input, end_date: date });
   };
   useEffect(() => {
     if (Object.keys(errors).length === 0) {
