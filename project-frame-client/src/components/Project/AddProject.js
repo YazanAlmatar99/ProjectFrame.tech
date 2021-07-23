@@ -53,8 +53,8 @@ const AddProject = () => {
     projectName: "",
     projectIdentifier: "",
     description: "",
-    start_date: getFormattedDate(new Date()),
-    end_date: getFormattedDate(new Date()),
+    start_date: new Date(),
+    end_date: new Date(),
     errors: {},
   });
 
