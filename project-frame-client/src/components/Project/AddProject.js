@@ -134,7 +134,6 @@ const AddProject = () => {
                 id="projectIdentifier"
                 label="Unique Project ID"
                 name="projectIdentifier"
-                autoFocus
                 error={errors.projectIdentifier != null}
                 helperText={errors.projectIdentifier}
                 onChange={onChangeHandler}
@@ -156,11 +155,12 @@ const AddProject = () => {
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <Grid container justifyContent="space-around">
                   <KeyboardDatePicker
-                    variant="inline"
+                    variant="standard"
                     format="MM-dd-yyyy"
                     margin="normal"
                     id="date-picker-inline"
                     label="Start Date"
+                    disableToolbar
                     value={input.start_date}
                     onChange={handleStartDate}
                     KeyboardButtonProps={{
@@ -169,8 +169,9 @@ const AddProject = () => {
                   />
                   <KeyboardDatePicker
                     margin="normal"
-                    variant="inline"
+                    variant="standard"
                     id="date-picker-inline"
+                    disableToolbar
                     label="End Date"
                     format="MM-dd-yyyy"
                     value={input.end_date}
