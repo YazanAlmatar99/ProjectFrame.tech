@@ -126,7 +126,7 @@ const ProjectTask = ({ projectTask }) => {
             >
               <MenuItem onClick={handleMenuClose}>
                 {" "}
-                <IconButton aria-label="edit" color="Primary">
+                <IconButton aria-label="edit" color="primary">
                   <EditIcon />
                 </IconButton>
               </MenuItem>
@@ -137,7 +137,7 @@ const ProjectTask = ({ projectTask }) => {
                 <DeleteForeverIcon />
               </IconButton>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            {/* <MenuItem onClick={handleMenuClose}>Logout</MenuItem> */}
           </Menu>
           <FormControl className={classes.formControl}>
             <InputLabel id="demo-simple-select-outlined-label">

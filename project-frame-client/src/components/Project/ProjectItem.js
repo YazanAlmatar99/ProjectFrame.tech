@@ -89,7 +89,7 @@ const ProjectItem = ({ project }) => {
             <Link to={`/updateProject/${project.projectIdentifier}`}>
               <MenuItem onClick={handleMenuClose}>
                 {" "}
-                <IconButton aria-label="edit" color="Primary">
+                <IconButton aria-label="edit" color="primary">
                   <EditIcon />
                 </IconButton>
               </MenuItem>
@@ -103,7 +103,7 @@ const ProjectItem = ({ project }) => {
                 <DeleteForeverIcon />
               </IconButton>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>Logout</MenuItem>
+            {/* <MenuItem onClick={handleMenuClose}>Logout</MenuItem> */}
           </Menu>
           <div className="row">
             <div className="col-2"></div>
