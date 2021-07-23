@@ -37,13 +37,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-const getFormattedDate = (date) => {
-  let year = date.getFullYear();
-  let month = (1 + date.getMonth()).toString().padStart(2, "0");
-  let day = date.getDate().toString().padStart(2, "0");
-
-  return month + "-" + day + "-" + year;
-};
 const AddProject = () => {
   const { createProject } = useActions();
   const classes = useStyles();
@@ -59,22 +52,9 @@ const AddProject = () => {
   });
 
   const handleStartDate = (date) => {
-    // var dd = String(date.getDate()).padStart(2, "0");
-    // var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-    // var yyyy = date.getFullYear();
-
-    // const start_date = mm + "-" + dd + "-" + yyyy;
-
     setInput({ ...input, start_date: date });
-    // console.log(input.start_date);
   };
   const handleEndDate = (date) => {
-    // var dd = String(date.getDate()).padStart(2, "0");
-    // var mm = String(date.getMonth() + 1).padStart(2, "0"); //January is 0!
-    // var yyyy = date.getFullYear();
-
-    // const end_date = mm + "-" + dd + "-" + yyyy;
-    console.log(input.end_date);
     setInput({ ...input, end_date: date });
   };
   useEffect(() => {
