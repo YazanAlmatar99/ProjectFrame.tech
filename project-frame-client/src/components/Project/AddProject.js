@@ -37,7 +37,13 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
+const getFormattedDate = (date) => {
+  let year = date.getFullYear();
+  let month = (1 + date.getMonth()).toString().padStart(2, "0");
+  let day = date.getDate().toString().padStart(2, "0");
 
+  return month + "-" + day + "-" + year;
+};
 const AddProject = () => {
   const { createProject } = useActions();
   const classes = useStyles();
@@ -47,8 +53,8 @@ const AddProject = () => {
     projectName: "",
     projectIdentifier: "",
     description: "",
-    start_date: new Date(),
-    end_date: new Date(),
+    start_date: getFormattedDate(new Date()),
+    end_date: getFormattedDate(new Date()),
     errors: {},
   });
 
@@ -80,13 +86,7 @@ const AddProject = () => {
   const onChangeHandler = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
-  const getFormattedDate = (date) => {
-    let year = date.getFullYear();
-    let month = (1 + date.getMonth()).toString().padStart(2, "0");
-    let day = date.getDate().toString().padStart(2, "0");
 
-    return month + "-" + day + "-" + year;
-  };
   const onFormSubmit = async (e) => {
     e.preventDefault();
     const {
@@ -96,17 +96,13 @@ const AddProject = () => {
       start_date,
       end_date,
     } = input;
-    console.log(start_date, "FROM SUBMIT FUNCTION");
-    const start_date_formatted = getFormattedDate(start_date);
-    const end_date_formatted = getFormattedDate(end_date);
-    console.log(start_date_formatted, "FROM SUBMIT FORMATTED");
 
     const newProject = {
       projectName,
       projectIdentifier,
       description,
-      start_date: start_date_formatted,
-      end_date: end_date_formatted,
+      start_date,
+      end_date,
     };
     await createProject(newProject, history);
   };
@@ -168,7 +164,7 @@ const AddProject = () => {
                 <Grid container justifyContent="space-around">
                   <KeyboardDatePicker
                     variant="standard"
-                    // format="MM-dd-yyyy"
+                    format="MM-dd-yyyy"
                     margin="normal"
                     id="date-picker-inline"
                     label="Start Date"
@@ -185,7 +181,7 @@ const AddProject = () => {
                     id="date-picker-inline"
                     disableToolbar
                     label="End Date"
-                    // format="MM-dd-yyyy"
+                    format="MM-dd-yyyy"
                     value={new Date(input.end_date)}
                     onChange={handleEndDate}
                     KeyboardButtonProps={{
