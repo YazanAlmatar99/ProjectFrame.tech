@@ -173,7 +173,7 @@ const AddProject = () => {
                     id="date-picker-inline"
                     label="Start Date"
                     disableToolbar
-                    // value={input.start_date}
+                    value={new Date(input.start_date)}
                     onChange={handleStartDate}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
@@ -186,7 +186,7 @@ const AddProject = () => {
                     disableToolbar
                     label="End Date"
                     // format="MM-dd-yyyy"
-                    // value={input.end_date}
+                    value={new Date(input.end_date)}
                     onChange={handleEndDate}
                     KeyboardButtonProps={{
                       "aria-label": "change date",
