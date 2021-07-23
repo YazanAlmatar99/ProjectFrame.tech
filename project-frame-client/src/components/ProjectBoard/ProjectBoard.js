@@ -39,7 +39,7 @@ const ProjectBoard = (props) => {
       {projectTasks.length ? (
         <Backlog projectTasks={projectTasks} />
       ) : (
-        <div class="alert alert-primary" role="alert">
+        <div className="alert alert-primary" role="alert">
           No Project Tasks Found! Click on <strong>Create Project Task </strong>
           to create your first project task
         </div>
