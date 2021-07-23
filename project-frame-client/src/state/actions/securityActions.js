@@ -68,3 +68,7 @@ export const authUser = () => async (dispatch) => {
     console.log("UnAuthorized");
   }
 };
+
+export const clearErrors = () => async (dispatch) => {
+  dispatch({ type: GET_ERRORS, payload: {} });
+};
