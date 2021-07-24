@@ -9,10 +9,6 @@ const Backlog = ({ projectTasks }) => {
   const handleChange = () => {
     setShowChart(!showChart);
   };
-  useEffect(() => {
-    console.log(projectTasks);
-  });
-
   const tasks = projectTasks.map((projectTask) => (
     <ProjectTask key={projectTask.id} projectTask={projectTask} />
   ));

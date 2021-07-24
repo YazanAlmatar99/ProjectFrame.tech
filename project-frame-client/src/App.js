@@ -13,7 +13,12 @@ import Landing from "./components/Layout/Landing";
 import { useSelector } from "react-redux";
 import Login from "./components/UserManagement/Login";
 import Register from "./components/UserManagement/Register";
-import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  useHistory,
+} from "react-router-dom";
 import { AddProjectTask } from "./components/ProjectBoard/ProjectTasks/AddProjectTask";
 import PrivateRoute from "./utils/PrivateRoute";
 import { useActions } from "./hooks/use-actions";

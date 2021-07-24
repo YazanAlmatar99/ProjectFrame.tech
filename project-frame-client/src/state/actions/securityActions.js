@@ -38,7 +38,7 @@ export const logout = () => (dispatch) => {
   dispatch({ type: SET_CURRENT_USER, payload: {} });
 };
 
-export const authUser = () => async (dispatch) => {
+export const authUser = (history) => async (dispatch) => {
   const bearerToken = localStorage.getItem("token");
   const token = bearerToken.split(" ")[1];
   try {
@@ -66,6 +66,7 @@ export const authUser = () => async (dispatch) => {
     localStorage.removeItem("token");
     dispatch({ type: SET_CURRENT_USER, payload: {} });
     console.log("UnAuthorized");
+    window.location.href = "/login";
   }
 };
 
