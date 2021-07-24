@@ -24,6 +24,7 @@ import OpenInBrowserIcon from "@material-ui/icons/OpenInBrowser";
 import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
 import AppsIcon from "@material-ui/icons/Apps";
+import { useHistory } from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -100,6 +101,7 @@ export default function Header() {
   const [open, setOpen] = React.useState(false);
   const { logout } = useActions();
   const security = useSelector((state) => state.securityState);
+  const history = useHistory();
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -108,7 +110,10 @@ export default function Header() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
+  const handleLogout = () => {
+    logout();
+    handleDrawerClose();
+  };
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -173,29 +178,22 @@ export default function Header() {
           </IconButton>
         </div>
         <Divider />
-        <List>
-          {/* {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))} */}
-          {/* <Fragment> */}
-          <Link
-            to="/dashboard"
-            className={clsx(classes.link)}
-            style={{ color: "rgba(0, 0, 0, 0.54)" }}
-          >
-            <ListItem button onClick={handleDrawerClose}>
-              <ListItemIcon>
-                <AppsIcon />
-              </ListItemIcon>
-              <ListItemText primary={"Dashboard"} />
-            </ListItem>
-          </Link>
-        </List>
+        {security.validToken ? (
+          <List>
+            <Link
+              to="/dashboard"
+              className={clsx(classes.link)}
+              style={{ color: "rgba(0, 0, 0, 0.54)" }}
+            >
+              <ListItem button onClick={handleDrawerClose}>
+                <ListItemIcon>
+                  <AppsIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Dashboard"} />
+              </ListItem>
+            </Link>
+          </List>
+        ) : null}
         <Divider />
         <List>
           {!security.validToken ? (
@@ -226,12 +224,18 @@ export default function Header() {
               </Link>
             </Fragment>
           ) : (
-            <ListItem button onClick={() => logout()}>
-              <ListItemIcon onClick={() => logout()}>
-                <LockIcon />
-              </ListItemIcon>
-              <ListItemText primary="Logout" />
-            </ListItem>
+            <Link
+              to="/login"
+              className={clsx(classes.link)}
+              style={{ color: "rgba(0, 0, 0, 0.54)" }}
+            >
+              <ListItem button onClick={handleLogout}>
+                <ListItemIcon onClick={() => logout()}>
+                  <LockIcon />
+                </ListItemIcon>
+                <ListItemText primary="Logout" />
+              </ListItem>
+            </Link>
           )}
         </List>
       </Drawer>
