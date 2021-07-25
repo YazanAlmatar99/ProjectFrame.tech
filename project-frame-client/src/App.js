@@ -13,6 +13,7 @@ import Landing from "./components/Layout/Landing";
 import { useSelector } from "react-redux";
 import Login from "./components/UserManagement/Login";
 import Register from "./components/UserManagement/Register";
+import Profile from "./components/Profile/Profile";
 import {
   BrowserRouter as Router,
   Route,
@@ -44,6 +45,7 @@ const App = () => {
 
         <PrivateRoute path="/dashboard" component={Dashboard} exact />
         <PrivateRoute path="/addProject" component={AddProject} exact />
+        <PrivateRoute path="/profile" component={Profile} exact />
         <PrivateRoute
           path="/updateProject/:id"
           component={UpdateProject}

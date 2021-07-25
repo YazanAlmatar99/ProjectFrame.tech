@@ -15,3 +15,4 @@ export const SORT_BACKLOG_BY_STATUS = "sort_backlog_by_status";
 export const LOGIN_USER = "login_user";
 export const CREATE_USER = "create_user";
 export const SET_CURRENT_USER = "set_current_user";
+export const UPDATE_USER_INFO = "update_user_info";

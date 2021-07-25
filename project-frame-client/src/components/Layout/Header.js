@@ -25,6 +25,7 @@ import LockOpenIcon from "@material-ui/icons/LockOpen";
 import LockIcon from "@material-ui/icons/Lock";
 import AppsIcon from "@material-ui/icons/Apps";
 import { useHistory } from "react-router-dom";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -193,6 +194,18 @@ export default function Header() {
                   <AppsIcon />
                 </ListItemIcon>
                 <ListItemText primary={"Dashboard"} />
+              </ListItem>
+            </Link>
+            <Link
+              to="/profile"
+              className={clsx(classes.link)}
+              style={{ color: "rgba(0, 0, 0, 0.54)" }}
+            >
+              <ListItem button onClick={handleDrawerClose}>
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Profile"} />
               </ListItem>
             </Link>
           </List>
