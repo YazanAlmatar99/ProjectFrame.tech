@@ -27,7 +27,6 @@ public class User implements UserDetails {
     private String username;
     @NotBlank(message = "Please enter your full name")
     private String fullName;
-
     @NotBlank(message = "Password is required")
     private String password;
     @Transient

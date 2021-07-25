@@ -51,4 +51,20 @@ public class UserService {
         }
     }
 
+    public User getUserById(Long id) {
+        try {
+            Optional<User> user = userRepository.findById(id);
+            User user1 = user.get();
+            user1.setPassword(null);
+            user1.setProjects(null);
+            if (user1 != null) {
+                return user1;
+            }
+        } catch (Exception e) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return null;
+    }
+
+
 }
