@@ -76,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: "bold",
     marginRight: "5px",
     cursor: "pointer",
+    "&:hover": {
+      color: "white",
+    },
   },
   content: {
     flexGrow: 1,

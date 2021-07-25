@@ -74,4 +74,13 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
     }
+
+    @PatchMapping()
+    public ResponseEntity<?> updateUser(@RequestBody User updatedUser, BindingResult result) {
+        ResponseEntity<?> errorMap = mapValidationErrorService.MapValidationService(result);
+        if (errorMap != null) return errorMap;
+
+        User updatedUser1 = userService.updateUser(updatedUser);
+        return new ResponseEntity<User>(updatedUser1, HttpStatus.OK);
+    }
 }
