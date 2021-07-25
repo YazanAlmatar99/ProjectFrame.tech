@@ -50,7 +50,7 @@ export const authUser = (history) => async (dispatch) => {
       console.log("Authorized");
       setJWTToken(bearerToken);
       const decoded_jwtToken = jwt_decode(bearerToken);
-      dispatch({ type: SET_CURRENT_USER, payload: decoded_jwtToken });
+      dispatch({ type: SET_CURRENT_USER, payload: response.data });
       const currentTime = Date.now() / 1000;
       console.log(Date.now() / 1000);
       console.log(decoded_jwtToken.exp < currentTime);
