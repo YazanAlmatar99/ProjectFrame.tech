@@ -67,9 +67,12 @@ public class UserController {
     public ResponseEntity<?> tokenValidator(@RequestHeader String Authorization) {
         System.out.println(Authorization);
         boolean isTokenValid = jwtTokenProvider.validateToken(Authorization);
+
         System.out.println(isTokenValid);
         if (isTokenValid) {
-            return new ResponseEntity<>(HttpStatus.ACCEPTED);
+            Long id = jwtTokenProvider.getUserFromJWT(Authorization);
+            User user = userService.getUserById(id);
+            return new ResponseEntity<User>(user, HttpStatus.ACCEPTED);
         } else {
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
         }
