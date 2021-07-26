@@ -45,6 +45,9 @@ public class UserService {
             if (updatedUser.getUsername() != null) {
                 user1.setUsername(updatedUser.getUsername());
             }
+            if (updatedUser.getPosition() != null) {
+                user1.setPosition(updatedUser.getPosition());
+            }
             return userRepository.save(user1);
         } catch (Exception e) {
             throw new UsernameNotFoundException("User not found");
