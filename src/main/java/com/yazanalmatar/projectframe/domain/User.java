@@ -31,7 +31,7 @@ public class User implements UserDetails {
     private String password;
     @Transient
     private String confirmPassword;
-
+    private String position;
     private Date created_At;
     private Date updated_At;
 
@@ -98,6 +98,14 @@ public class User implements UserDetails {
 
     public void setUpdated_At(Date updated_At) {
         this.updated_At = updated_At;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 
     @PrePersist
