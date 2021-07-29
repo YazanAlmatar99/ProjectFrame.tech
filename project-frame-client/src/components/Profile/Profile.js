@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { useActions } from "../../hooks/use-actions";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Profile = () => {
   const { updateUserInfo } = useActions();
+  const history = useHistory();
   const user = useSelector((state) => state.securityState.user);
   const [userDetails, setUserDetails] = useState(user);
 
@@ -42,9 +44,10 @@ const Profile = () => {
       username: userDetails.username,
       fullName: userDetails.fullName,
       id: userDetails.id,
+      position: userDetails.position,
     };
 
-    await updateUserInfo(updatedUser);
+    await updateUserInfo(updatedUser, history);
   };
   return (
     <Container className={classes.root}>
@@ -77,6 +80,18 @@ const Profile = () => {
               id="username"
               label="Email"
               name="username"
+              // error={errors.projectIdentifier != null}
+              // helperText={errors.projectIdentifier}
+              onChange={onChangeHandler}
+            />
+            <TextField
+              margin="normal"
+              required
+              value={userDetails.position}
+              fullWidth
+              id="position"
+              label="Position"
+              name="position"
               // error={errors.projectIdentifier != null}
               // helperText={errors.projectIdentifier}
               onChange={onChangeHandler}
