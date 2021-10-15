@@ -8,6 +8,11 @@ const Landing = () => {
           <div className="row">
             <div className="col-md-12 text-center">
               <h1 className="display-3 mb-4">Project Frame</h1>
+
+              <img
+                src="landing-picture.svg"
+                style={{ width: "300px", margin: "auto", margin: "10px" }}
+              />
               <p className="lead">
                 Create your account to start using Project Frame or Login if you
                 already have an account!
